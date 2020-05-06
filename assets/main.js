@@ -8,13 +8,24 @@
 // TODO 1: Use querySelector to assign EACH of the above 
 // elements to a variable, just like this:
 let searchButton = document.querySelector('#search-button')
+let inputTextBox = document.querySelector('#textbox')
+let sentenceBox = document.querySelector('#sentence')
+let searchResults = document.querySelector('#search-results')
 
 searchButton.addEventListener('click', function () {
  
   // TODO 2: Write an IF statement which determines whether
   // the user-supplied string from #textbox is included in
   // the #sentence string.
-  
+  if (sentenceBox.innerText.toLowerCase().includes(inputTextBox.innerText.toLowerCase().trim())) {
+      searchResults.innerText = ('Match')
+  } else {
+      searchResults.innerText = ('No Match')
+  }
+
+  })
+
+
   // Hint 1: To get the user-supplied string from the input 
   // box (#textbox), use the property .value on the variable
   // you assigned the textbox element to.
@@ -33,7 +44,11 @@ searchButton.addEventListener('click', function () {
   // otherwise update it with a failure message (such as, 
   // "No results. Too bad!")
 
-})
+function highlight(word, text){
+  let regex = new RegExp("\\b(" + word + ")\\b", "gi");
+  text = text.replace(regex, "<mark>$1</mark>");
+  return text;
+}
 
 // STRETCH GOALS (easiest to hardest):
 //
